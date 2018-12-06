@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../logo.svg'
 
 class Logo extends React.Component {
@@ -10,6 +11,7 @@ class Logo extends React.Component {
               <p>
                 <code>src/App.js</code> and to reload.
               </p>
+              <Link to="/calendar"><button>Gainz</button></Link>
               <a
                 className="App-link"
                 href="https://reactjs.org"
