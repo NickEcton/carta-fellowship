@@ -32,10 +32,13 @@ class Splash extends React.Component {
         let heads = document.querySelectorAll('.header')
         for(let i =0; i < heads.length; i++) {
           heads[i].addEventListener('click',(e)=>{
-            e.preventDefault();
-            let arr = Array.from(e.target.children)
-            arr.forEach(el=> {
-              el.classList.toggle('hide')
+            
+            console.log(e.currentTarget.children)
+           
+            let arr = Array.from(e.currentTarget.children)
+            arr.forEach((el, idx)=> {
+              if (idx === 0) {}
+              else {el.classList.toggle('hide')}
             })
           })
         }
@@ -48,14 +51,25 @@ class Splash extends React.Component {
         let heads = document.querySelectorAll('.header')
         for(let i =0; i < heads.length; i++) {
           heads[i].addEventListener('click',(e)=>{
-            e.preventDefault();
-            let arr = Array.from(e.target.children)
-            arr.forEach(el=> {
-              el.classList.toggle('hide')
+            console.log(e.currentTarget.children)
+            let arr = Array.from(e.currentTarget.children)
+            console.log(e)
+            arr.forEach((el, idx)=> {
+              if (idx === 0) {}
+              else {el.classList.toggle('hide')}
             })
+            console.log('clicked')
       })
     }
   }
+
+    findTotal() {
+      let total = 0
+      this.state.assets.forEach(el=>{
+        total += el.cost.$ || 0 
+      })
+      return total
+    }
 
     hardTog(e) {
       let t = document.querySelector('.table')
@@ -107,18 +121,25 @@ class Splash extends React.Component {
               </div>
               {this.state.assets.map(function(asset,idx){
                 return (
-                <div className="header" key={idx}>{asset.name}
+                <div className="header" key={idx}>
+                  <div className="head-row">
+                    <span className="asset-detail">{asset.name}</span>
+                    <span className="header-detail"></span>
+                    <span className="header-detail">{asset.quantity.formatMoney()} $</span>
+                    <span className="header-detail">{asset.cost.$.formatMoney()}</span>  
+                  </div>
                   {asset.issued_assets.map(function(inv, index) {
                     return <div className="asset-info" key={index}>
                     <span className="asset-detail">{inv.asset_class}</span>
                     <span className="asset-detail">{inv.investment_date}</span>
-                    <span className="asset-detail">{inv.quantity} $ </span>
+                    <span className="asset-detail">{!inv.quantity || inv.quantity.formatMoney()} $ </span>
                     <span className="asset-detail">{inv.cost.$.formatMoney()}</span>
                     </div>
                   })}
                 </div>
                 )
               })}
+              <div className="total-row"><span>Total</span> <span>$ {this.findTotal().formatMoney()}</span></div>
             </div>
           </div>
         );

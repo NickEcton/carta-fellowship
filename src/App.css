@@ -1,5 +1,7 @@
 body {
   background-color: white;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 .table {
   background-color: white;
@@ -9,6 +11,13 @@ body {
 .header {
   background-color: grey;
   margin-top:25px; 
+  cursor: pointer;
+}
+.total-row {
+  background-color: grey;
+  margin-top: 25px;
+  justify-content: space-between;
+  display: flex;
 }
 .asset-info {
   background-color: white;
