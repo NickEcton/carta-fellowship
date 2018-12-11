@@ -8,10 +8,19 @@ body {
 }
 .header {
   background-color: grey;
+  margin-top:25px; 
 }
 .asset-info {
   background-color: white;
   display: flex;
+  text-align: right;
+}
+.head-row {
+  display: flex;
+  border-bottom: 3px solid grey;
+}
+.header-detail {
+  flex: 1;
   text-align: right;
 }
 .hide {

@@ -57,6 +57,11 @@ class Splash extends React.Component {
     }
   }
 
+    hardTog(e) {
+      let t = document.querySelector('.table')
+      t.classList.toggle('hide')
+    }
+
     handleSelect(e) {
       this.setState( {date: e })
     }
@@ -92,7 +97,14 @@ class Splash extends React.Component {
               <DatePicker selected={this.state.date} onSelect={this.handleSelect}/>
               <button type="submit">Submit</button>
             </form>
+            <button onClick={this.hardTog} className="togTable">Toggle All</button>
             <div className="table">
+              <div className="head-row">
+                <span className="header-detail">Asset</span>
+                <span className="header-detail">Investment Date</span>
+                <span className="header-detail">Shares</span>
+                <span className="header-detail">Cost</span>
+              </div>
               {this.state.assets.map(function(asset,idx){
                 return (
                 <div className="header" key={idx}>{asset.name}
@@ -101,7 +113,7 @@ class Splash extends React.Component {
                     <span className="asset-detail">{inv.asset_class}</span>
                     <span className="asset-detail">{inv.investment_date}</span>
                     <span className="asset-detail">{inv.quantity} $ </span>
-                    <span className="asset-detail">{inv.cost.$}</span>
+                    <span className="asset-detail">{inv.cost.$.formatMoney()}</span>
                     </div>
                   })}
                 </div>
